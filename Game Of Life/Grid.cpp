@@ -21,14 +21,25 @@ void initializeGrid(Grid& grid, int& rows, int& cols) {
     while (true) {
         cout << "Cell (Enter: row column): ";
         cin >> r >> c;
+
+
+        if (cin.fail()) {
+            cout << "Invalid input. Please enter two numbers.\n";
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
         if (r == -1 && c == -1) break;
+
         if (r >= 0 && r < rows && c >= 0 && c < cols) {
             grid[r][c] = true;
         }
         else {
-            cout << "Invalid coordinates. Try again." << endl;
+            cout << "Invalid coordinates. Try again.\n";
         }
     }
+
 }
 
 void printGrid(const Grid& grid) {
